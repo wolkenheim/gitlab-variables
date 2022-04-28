@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gitlab-variables/app"
+	"gitlab-variables/src/app"
 )
 
 func init() {
