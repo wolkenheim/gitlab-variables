@@ -1,6 +1,7 @@
 package files
 
 import (
+	"errors"
 	"github.com/spf13/afero"
 	"log"
 	"strings"
@@ -16,9 +17,15 @@ func NewBackup(appFs afero.Fs) *Backup {
 }
 
 func (backup *Backup) GetLastBackupFileSize() int64 {
-	previousBackupFileName := getLastBackupFileName(backup.GetBackupFileNames())
+
+	previousBackupFileName, err := getLastBackupFileName(backup.GetBackupFileNames())
+	if err != nil {
+		return 0
+	}
+
 	path := getPathForBackupFileName(previousBackupFileName)
 	info, _ := backup.appFs.Stat(path)
+
 	return info.Size()
 }
 
@@ -78,7 +85,12 @@ type youngestDate struct {
 	time time.Time
 }
 
-func getLastBackupFileName(names []string) string {
+func getLastBackupFileName(names []string) (string, error) {
+
+	if len(names) == 0 {
+		return "", errors.New("no backup files found")
+	}
+
 	var y youngestDate
 	for _, name := range names {
 		nameParts := strings.Split(name, ".")
@@ -99,5 +111,10 @@ func getLastBackupFileName(names []string) string {
 			y = youngestDate{name, date}
 		}
 	}
-	return y.name
+
+	if y.name == "" {
+		return "", errors.New("no valid backup file found")
+	}
+
+	return y.name, nil
 }
