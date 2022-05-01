@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"gitlab-variables/src/app"
+	"gitlab-variables/src/cmd"
 )
 
 func init() {
@@ -10,5 +10,7 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Hello")
+	cmdRepo := cmd.NewCommandRepo()
+	//cmdRepo.AddUpdateCmd(comp)
+	cmdRepo.Root.Execute()
 }
