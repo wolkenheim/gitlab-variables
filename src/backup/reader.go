@@ -2,7 +2,7 @@ package backup
 
 import (
 	"github.com/spf13/afero"
-	"kafka-certificates/src/util"
+	"gitlab-variables/src/util"
 	"log"
 )
 
