@@ -20,10 +20,3 @@ func NewCommandRepo() *CommandRepo {
 	}
 	return &CommandRepo{rootCmd}
 }
-
-/*
-func (c *CommandRepo) AddUpdateCmd(compound *list.Compound) {
-	c.Root.AddCommand(updateCmd(compound))
-}
-
-*/
