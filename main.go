@@ -26,5 +26,6 @@ func main() {
 
 	cmdRepo := cmd.NewCommandRepo()
 	cmdRepo.AddUpdateCmd(comp)
+	cmdRepo.AddInitCmd(comp)
 	cmdRepo.Root.Execute()
 }

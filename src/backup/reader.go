@@ -7,7 +7,7 @@ import (
 )
 
 func (backup *Backup) ReadNewVariablesFile() []util.Variable {
-	return backup.readVariablesFile(getNewVarsFilePath())
+	return backup.readVariablesFile(getUpdateVarsFilePath())
 }
 
 func (backup *Backup) readVariablesFile(path string) []util.Variable {

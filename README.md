@@ -32,7 +32,8 @@ go test -v ./...
 ```
 
 ## Run
-export GITLAB_ENV=demo_project
+
 ```
+export GITLAB_ENV=demo_project
 go run . update
 ```

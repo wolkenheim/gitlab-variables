@@ -17,23 +17,39 @@ func NewCompound(g *gitlab.Service, b *backup.Backup) *Compound {
 	return &Compound{g, b}
 }
 
-func (c *Compound) Execute() {
+func (c *Compound) Init() {
+	c.backup.CreateBackupDirIfNotExists()
+	backupPath := c.fetchAllAndBackup()
+	c.backup.CreateNewVariablesFileFromBackupFile(backupPath)
+}
+
+func (c *Compound) Update() {
 	list := c.buildChangeList()
 	c.processChangeList(list)
 }
 
-func (c *Compound) fetchAllAndBackup() []util.Variable {
+func (c *Compound) fetchAll() []byte {
 	content, err := c.gitlabService.FetchAllRaw()
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	return content
+}
+
+func (c *Compound) fetchAllAndBackup() (backupPath string) {
+	content := c.fetchAll()
+	return c.backup.BackupGitlabVariables(content)
+}
+
+func (c *Compound) fetchAllAndBackupAndParse() []util.Variable {
+	content := c.fetchAll()
 	c.backup.BackupGitlabVariables(content)
 	return util.ParseVariableJson(content)
 }
 
 func (c *Compound) buildChangeList() []util.ChangeVariable {
 	newList := c.backup.ReadNewVariablesFile()
-	currentList := c.fetchAllAndBackup()
+	currentList := c.fetchAllAndBackupAndParse()
 
 	if len(newList) != len(currentList) {
 		log.Fatal("Have not yet implemented this case")

@@ -20,7 +20,7 @@ func updateCmd(compound *list.Compound) *cobra.Command {
 
 			fmt.Println("This is the update command")
 
-			compound.Execute()
+			compound.Update()
 
 		},
 	}

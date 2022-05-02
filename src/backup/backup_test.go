@@ -43,7 +43,7 @@ func TestGetStatForLastBackupFile(t *testing.T) {
 		osMock := afero.NewMemMapFs()
 
 		backup := NewBackup(osMock)
-		backup.createBackupDirIfNotExists()
+		backup.CreateBackupDirIfNotExists()
 
 		got := backup.GetLastBackupFileSize()
 		if got != 0 {
@@ -56,7 +56,7 @@ func TestGetStatForLastBackupFile(t *testing.T) {
 		osMock.Create(getProjectBackupPath() + "/sdsdsd.txt")
 
 		backup := NewBackup(osMock)
-		backup.createBackupDirIfNotExists()
+		backup.CreateBackupDirIfNotExists()
 
 		got := backup.GetLastBackupFileSize()
 		if got != 0 {
@@ -73,7 +73,7 @@ func TestGetStatForLastBackupFile(t *testing.T) {
 		file.WriteString("asdassda asdad")
 
 		backup := NewBackup(osMock)
-		backup.createBackupDirIfNotExists()
+		backup.CreateBackupDirIfNotExists()
 
 		got := backup.GetLastBackupFileSize()
 
