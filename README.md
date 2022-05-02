@@ -30,3 +30,9 @@ solution is a bit of an overhead.
 ```
 go test -v ./...
 ```
+
+## Run
+export GITLAB_ENV=demo_project
+```
+go run . update
+```
