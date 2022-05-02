@@ -1,4 +1,4 @@
-package files
+package backup
 
 import (
 	"errors"
@@ -10,6 +10,11 @@ import (
 
 type Backup struct {
 	appFs afero.Fs
+}
+
+type youngestDate struct {
+	name string
+	time time.Time
 }
 
 func NewBackup(appFs afero.Fs) *Backup {
@@ -80,15 +85,10 @@ func (backup *Backup) GetBackupFileNames() (names []string) {
 	return names
 }
 
-type youngestDate struct {
-	name string
-	time time.Time
-}
-
 func getLastBackupFileName(names []string) (string, error) {
 
 	if len(names) == 0 {
-		return "", errors.New("no backup files found")
+		return "", errors.New("no backup backup found")
 	}
 
 	var y youngestDate
