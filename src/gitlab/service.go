@@ -43,7 +43,7 @@ func (service *Service) PrintListVariables() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	res, err := PrettyString(body)
+	res, err := util.PrettyString(body)
 	if err != nil {
 		log.Fatal(err)
 	}

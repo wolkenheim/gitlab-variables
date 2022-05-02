@@ -2,6 +2,7 @@ package backup
 
 import (
 	"github.com/spf13/afero"
+	"gitlab-variables/src/util"
 	"io"
 	"log"
 )
@@ -41,7 +42,8 @@ func (backup *Backup) BackupGitlabVariables(list []byte) (backupPath string) {
 		log.Fatal(err)
 	}
 	defer file.Close()
-	_, err = file.WriteString(string(list))
+	prettyJSON, _ := util.PrettyString(list)
+	_, err = file.WriteString(prettyJSON)
 	if err != nil {
 		log.Fatal(err)
 	}

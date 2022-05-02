@@ -1,8 +1,6 @@
 package gitlab
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"github.com/spf13/viper"
 	"io"
@@ -32,7 +30,7 @@ func (api *ApiClient) call(url, method string, requestBody io.Reader) ([]byte, e
 	if err != nil {
 		return nil, err
 	}
-	
+
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
@@ -40,12 +38,4 @@ func (api *ApiClient) call(url, method string, requestBody io.Reader) ([]byte, e
 
 	return body, nil
 
-}
-
-func PrettyString(response []byte) (string, error) {
-	var prettyJSON bytes.Buffer
-	if err := json.Indent(&prettyJSON, response, "", "    "); err != nil {
-		return "", err
-	}
-	return prettyJSON.String(), nil
 }

@@ -18,7 +18,6 @@ func NewCompound(g *gitlab.Service, b *backup.Backup) *Compound {
 }
 
 func (c *Compound) Init() {
-	c.backup.CreateBackupDirIfNotExists()
 	backupPath := c.fetchAllAndBackup()
 	c.backup.CreateNewVariablesFileFromBackupFile(backupPath)
 }
