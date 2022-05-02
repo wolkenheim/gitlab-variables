@@ -31,9 +31,9 @@ solution is a bit of an overhead.
 go test -v ./...
 ```
 
-## Run
-
+## Run locally
 ```
 export GITLAB_ENV=demo_project
+go run . init
 go run . update
 ```
