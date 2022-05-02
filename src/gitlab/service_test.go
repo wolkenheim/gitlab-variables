@@ -3,7 +3,7 @@ package gitlab
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"kafka-certificates/src/app"
+	"gitlab-variables/src/app"
 	"net/http"
 	"net/http/httptest"
 	"testing"

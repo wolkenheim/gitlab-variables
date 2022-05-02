@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"gitlab-variables/src/util"
 	"io"
-	"kafka-certificates/src/util"
 	"log"
 	"net/http"
 )

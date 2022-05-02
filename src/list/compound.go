@@ -2,9 +2,9 @@ package list
 
 import (
 	"fmt"
-	"kafka-certificates/src/backup"
-	"kafka-certificates/src/gitlab"
-	"kafka-certificates/src/util"
+	"gitlab-variables/src/backup"
+	"gitlab-variables/src/gitlab"
+	"gitlab-variables/src/util"
 	"log"
 )
 
