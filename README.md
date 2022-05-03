@@ -8,6 +8,7 @@ Frankly speaking, this is just a small project and will not fix all possible sce
 ## What it does
 * Enable versioning for Gitlab CI variables
 * Automated updating of Gitlab CI variables via REST API
+* Create backup files of variables in JSON format that can be manually compared via DiffMerge
 
 ## Caveats
 There are a lot of caveats here. The ones I can think of are:
@@ -32,8 +33,8 @@ go test -v ./...
 ```
 
 ## Run locally
+Initialize project. This will create a directory for backups and the json file for updating
 ```
-export GITLAB_ENV=demo_project
-go run . init
-go run . update
+go run . init demo_project
+go run . update demo_project
 ```

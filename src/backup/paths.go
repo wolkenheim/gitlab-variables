@@ -25,7 +25,7 @@ func getNewBackupFilePath() string {
 }
 
 func getUpdateVarsFilePath() string {
-	return fmt.Sprintf("%s/%s", getProjectPath(), viper.Get("newVariablesFile"))
+	return fmt.Sprintf("%s/%s", getProjectPath(), "update.json")
 }
 
 type youngestDate struct {
