@@ -18,8 +18,9 @@ func (c *Compound) buildChangeList(updateList []util.Variable, currentList []uti
 		curMap[curVar.Key] = curVar
 	}
 
-	if len(updateList) != len(currentList) {
-		//log.Fatal("Have not yet implemented this case")
+	updateMap := make(map[string]util.Variable)
+	for _, upVar := range updateList {
+		updateMap[upVar.Key] = upVar
 	}
 
 	// update: key exists in both lists and value (or other attributes) has changed
@@ -27,6 +28,8 @@ func (c *Compound) buildChangeList(updateList []util.Variable, currentList []uti
 	// delete: key does not exist in updateList but exists in currList. This will not work with the regular loop
 
 	var changeList []util.ChangeVariable
+
+	// create or update case
 	for _, newVar := range updateList {
 
 		old, ok := curMap[newVar.Key]
@@ -38,6 +41,15 @@ func (c *Compound) buildChangeList(updateList []util.Variable, currentList []uti
 			changeList = append(changeList, util.ChangeVariable{Variable: newVar, ChangeType: util.CREATE})
 		}
 	}
+
+	// delete case
+	for _, curVar := range currentList {
+		_, ok := updateMap[curVar.Key]
+		if !ok {
+			changeList = append(changeList, util.ChangeVariable{Variable: curVar, ChangeType: util.DELETE})
+		}
+	}
+
 	return changeList
 }
 

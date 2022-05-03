@@ -61,6 +61,34 @@ func TestBuildChangList(t *testing.T) {
 		if changeList[0].Variable.Value != "hello9" {
 			t.Error("Value not correct")
 		}
+	})
 
+	t.Run("delete variable", func(t *testing.T) {
+
+		oldList := make([]util.Variable, 1)
+		oldList[0] = util.Variable{Key: "DB_PASSWORD", Value: "c3po"}
+
+		newList := make([]util.Variable, 0)
+
+		changeList := c.buildChangeList(newList, oldList)
+
+		if len(changeList) != 1 {
+			t.Error("Result List Length should be 1")
+		}
+
+		if changeList[0].ChangeType != util.DELETE {
+			t.Error("Type should be create")
+		}
+
+		if changeList[0].Variable.Key != "DB_PASSWORD" {
+			t.Error("Key not correct")
+		}
+	})
+
+	t.Run("nil case", func(t *testing.T) {
+		changeList := c.buildChangeList(nil, nil)
+		if len(changeList) != 0 {
+			t.Error("Result List should be empty slice")
+		}
 	})
 }
