@@ -55,6 +55,8 @@ func (c *Compound) processChangeList(list []util.ChangeVariable) {
 		return
 	}
 
+	fmt.Printf("Processing change list with %d entries\n", len(list))
+
 	for _, changeVariable := range list {
 		switch changeVariable.ChangeType {
 		case util.CREATE:

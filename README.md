@@ -42,3 +42,9 @@ Initialize project. This will create a directory for backups and the json file f
 go run . init demo_project
 go run . update demo_project
 ```
+
+Or build the project and run the binary. Build on Intel Mac:
+```
+env GOOS=darwin GOARCH=amd64 go build
+./gitlab-variables init demo_project
+```
