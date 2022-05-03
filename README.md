@@ -33,6 +33,10 @@ go test -v ./...
 ```
 
 ## Run locally
+Create config file config/project_name.json or copy existing demo file. You will need the url of your Gitlab
+installation. Also, the project id (Project > Settings > General). As well as a token (Project > Settings > Access
+Tokens). It needs "api" scope.
+
 Initialize project. This will create a directory for backups and the json file for updating
 ```
 go run . init demo_project
