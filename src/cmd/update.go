@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"gitlab-variables/src/list"
 )
@@ -17,11 +16,7 @@ func updateCmd(compound *list.Compound) *cobra.Command {
 		Long:  `Update Variables`,
 		Args:  nil,
 		Run: func(cmd *cobra.Command, args []string) {
-
-			fmt.Println("This is the update command")
-
 			compound.Update()
-
 		},
 	}
 }

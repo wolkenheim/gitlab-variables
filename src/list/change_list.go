@@ -23,10 +23,6 @@ func (c *Compound) buildChangeList(updateList []util.Variable, currentList []uti
 		updateMap[upVar.Key] = upVar
 	}
 
-	// update: key exists in both lists and value (or other attributes) has changed
-	// create: key does not exist in currList but only in updateList
-	// delete: key does not exist in updateList but exists in currList. This will not work with the regular loop
-
 	var changeList []util.ChangeVariable
 
 	// create or update case
