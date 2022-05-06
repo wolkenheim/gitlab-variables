@@ -44,3 +44,7 @@ func (c *Compound) fetchAllAndBackupAndParse() []util.Variable {
 	c.backup.BackupGitlabVariables(content)
 	return util.ParseVariableJson(content)
 }
+
+func (c *Compound) IsValidConfigName(name string) bool {
+	return c.backup.IsValidConfigName(name)
+}

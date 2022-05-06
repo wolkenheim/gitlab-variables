@@ -70,8 +70,11 @@ func (backup *Backup) CreateBackupDirIfNotExists() {
 }
 
 func (backup *Backup) GetBackupFileNames() (names []string) {
-	open, _ := backup.appFs.Open(getProjectBackupPath())
+	return backup.GetFileNamesForDir(getProjectBackupPath())
+}
 
+func (backup *Backup) GetFileNamesForDir(dirName string) (names []string) {
+	open, _ := backup.appFs.Open(dirName)
 	files, err := open.Readdir(0)
 	if err != nil {
 		log.Fatal(err)
